@@ -1,3 +1,4 @@
+--Customer is Dependent on Auth User Completely
 create table
   public.customer (
     created_at timestamp with time zone not null default now(),
