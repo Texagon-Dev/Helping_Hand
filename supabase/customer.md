@@ -1,4 +1,5 @@
 --Customer is Dependent on Auth User Completely
+````
 create table
   public.customer (
     created_at timestamp with time zone not null default now(),
@@ -26,3 +27,4 @@ create or replace trigger on_auth_user_created
 after insert on auth.users
 for each row
 execute procedure public.handle_new_user();
+````
