@@ -1,4 +1,4 @@
---Customer is Dependent on Auth User Completely
+This will Create the Customer Dependent on the Auth Table. The User in customer will be Created or Deleted when its entry is hit in auth table
 ````
 create table
   public.customer (
