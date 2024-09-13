@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the SQL schema for a customer and plan management system. The schema is designed to work with a PostgreSQL database and includes tables for customers, plans, and the relationships between them. It also includes functions and triggers to manage user data synchronization with an authentication system.
+This File contains the SQL schema for a customer and plan management system. The schema is designed to work with a PostgreSQL database and includes tables for customers, plans, and the relationships between them. It also includes functions and triggers to manage user data synchronization with an authentication system.
 
 ## Table Structure
 
