@@ -189,6 +189,7 @@ CREATE TABLE public.plans (
     price_currency text DEFAULT 'euro'::text,
     stripe_price_id text,
     stripe_plan_id text,
+    resources jsonb null,
     CONSTRAINT plans_pkey PRIMARY KEY (id)
 );
 
