@@ -161,6 +161,17 @@ To use this schema:
 - Customers can exist without a plan, providing flexibility in your system.
 - The `customer_plan` table allows for historical data of plan associations if needed.
 
+### Policies
+
+This Will Enable the RLS Policies
+
+```sql
+ALTER TABLE public.customer ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.customer_plan ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.plans ENABLE ROW LEVEL SECURITY;
+```
+
+
 ## Complete SQL Code
 
 For reference, here's the complete SQL code to set up this schema:
