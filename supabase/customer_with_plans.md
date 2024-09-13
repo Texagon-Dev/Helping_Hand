@@ -263,6 +263,11 @@ CREATE OR REPLACE TRIGGER on_auth_user_updated
 AFTER UPDATE ON auth.users
 FOR EACH ROW
 EXECUTE PROCEDURE public.handle_user_update();
+
+
+ALTER TABLE public.customer ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.customer_plan ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.plans ENABLE ROW LEVEL SECURITY;
 ```
 
 Feel free to modify this README Content as needed for your specific project requirements.
