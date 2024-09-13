@@ -197,6 +197,7 @@ CREATE TABLE public.customer_plan (
     plan_id bigint,
     created_at timestamp with time zone NOT NULL DEFAULT now(),
     updated_at timestamp with time zone NOT NULL DEFAULT now(),
+    resources jsonb null,
     CONSTRAINT customer_plan_pkey PRIMARY KEY (id),
     CONSTRAINT customer_plan_customer_uuid_fkey FOREIGN KEY (customer_uuid) REFERENCES public.customer(uuid) ON DELETE CASCADE,
     CONSTRAINT customer_plan_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE SET NULL
