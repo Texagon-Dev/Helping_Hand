@@ -47,3 +47,25 @@ AFTER
 UPDATE ON auth.users FOR EACH ROW
 EXECUTE PROCEDURE public.handle_user_update ();
 ````
+
+
+In Order to Drop these , Use These Commands 
+````
+-- Drop triggers first
+DROP TRIGGER IF EXISTS on_auth_user_updated ON auth.users;
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+
+-- Drop functions
+DROP FUNCTION IF EXISTS public.handle_user_update();
+DROP FUNCTION IF EXISTS public.handle_new_user();
+
+-- Drop indexes
+DROP INDEX IF EXISTS public.idx_customer_plan_plan_id;
+DROP INDEX IF EXISTS public.idx_customer_plan_customer_uuid;
+
+-- Drop tables
+-- Note: Order is important due to foreign key constraints
+DROP TABLE IF EXISTS public.customer_plan;
+DROP TABLE IF EXISTS public.plans;
+DROP TABLE IF EXISTS public.customer;
+````
