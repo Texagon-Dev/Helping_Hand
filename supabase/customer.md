@@ -1,14 +1,14 @@
-This will Create the Customer Dependent on the Auth Table. The User in customer will be Created or Deleted when its entry is hit in auth table. Modify this Code According to your Needs 
+This will Create the user Dependent on the Auth Table. The User in user will be Created or Deleted when its entry is hit in auth table. Modify this Code According to your Needs 
 ````
 
 create  table
-  public.customer (
+  public.user (
     created_at timestamp with time zone not null default now(),
     uuid uuid not null,
     email character varying not null,
     metadata jsonb null default '[]'::jsonb,
-    constraint customer_pkey primary key (uuid),
-    constraint customer_uuid_fkey foreign key (uuid) references auth.users (id) on delete cascade
+    constraint user_pkey primary key (uuid),
+    constraint user_uuid_fkey foreign key (uuid) references auth.users (id) on delete cascade
   ) tablespace pg_default;
 
 create or replace function public.handle_new_user()
@@ -18,7 +18,7 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public."customer" ("uuid", "email", "metadata")
+  insert into public."user" ("uuid", "email", "metadata")
   values (new.id, new.email, new.raw_user_meta_data);
   return new;
 end;
@@ -34,7 +34,7 @@ OR REPLACE FUNCTION public.handle_user_update () RETURNS TRIGGER LANGUAGE plpgsq
 SET
   search_path = public AS $$
 begin
-  update public."customer"
+  update public."user"
   set metadata = new.raw_user_meta_data
   where uuid = new.id;
   return new;
@@ -60,12 +60,12 @@ DROP FUNCTION IF EXISTS public.handle_user_update();
 DROP FUNCTION IF EXISTS public.handle_new_user();
 
 -- Drop indexes
-DROP INDEX IF EXISTS public.idx_customer_plan_plan_id;
-DROP INDEX IF EXISTS public.idx_customer_plan_customer_uuid;
+DROP INDEX IF EXISTS public.idx_user_plan_plan_id;
+DROP INDEX IF EXISTS public.idx_user_plan_user_uuid;
 
 -- Drop tables
 -- Note: Order is important due to foreign key constraints
-DROP TABLE IF EXISTS public.customer_plan;
+DROP TABLE IF EXISTS public.user_plan;
 DROP TABLE IF EXISTS public.plans;
-DROP TABLE IF EXISTS public.customer;
+DROP TABLE IF EXISTS public.user;
 ````
